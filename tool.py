@@ -51,7 +51,7 @@ def main():
         model="claude-3-opus-20240229",
         max_tokens=1024,
         tools=[weather_tool],
-        # Example user message to trigger the tool
+        # Example user message to trigger the tool, you could expand this code by moving this to a command-line input so that the user can ask for the weather in any location
         messages=[{"role": "user", "content": "What's the weather like in London?"}],
     )
 
