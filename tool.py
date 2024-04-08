@@ -3,13 +3,15 @@ import requests
 from dotenv import load_dotenv
 import os
 
-# Initialise loading environment variables
+# Load the environment variables from the .env file
 load_dotenv()
 
+# Assign the API keys to variables
 tomorrow_api_key = os.getenv("TOMORROW_API_KEY")
 client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
 def get_weather(location):
+    # Define the URL to fetch the weather data from the Tomorrow.io API templating the location and the API key
     url = f"https://api.tomorrow.io/v4/weather/forecast?location={location}&apikey={tomorrow_api_key}"
     
     try:
@@ -44,6 +46,7 @@ def main():
         }
     }
 
+    # Call the Claude API to start a conversation with Claude
     response = client.beta.tools.messages.create(
         model="claude-3-opus-20240229",
         max_tokens=1024,
@@ -79,7 +82,7 @@ def main():
             # Print workings of the tool
             print(tool_result_response)
 
-             # Print the weather result
+             # Extract and print out the weather result
             for content in tool_result_response.content:
                 if content.type == "text":
                     print(content.text)
