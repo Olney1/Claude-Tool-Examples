@@ -29,7 +29,6 @@ def get_weather(location):
         return f"Error occurred while fetching weather data: {str(e)}"
 
 def main():
-
     # Define the weather tool that can be chosen by Claude to get the current temperature in a given location if the user asks for it
     weather_tool = {
     "name": "get_weather",
